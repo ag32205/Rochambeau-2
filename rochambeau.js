@@ -8,7 +8,8 @@ var choices = ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
 
 // Variable to store the score
 // score[0] = wins, score[1] = ties, score[2] = losses
-var score = [0,0,0];
+var score = [0, 0, 0];
+var score2 = [0, 0, 0];
 
 // Stores the player's choice, then call's the function for storing the computer's choice
 function storePlayerChoice(choice) {
@@ -19,66 +20,78 @@ function storePlayerChoice(choice) {
 
 // Generate computer's random choice
 function storeComputerChoice() {
-    computerChoice = Math.floor(Math.random()*5);
+    computerChoice = Math.floor(Math.random() * 5);
     console.log("Computer choice = " + computerChoice);
 }
 
 // This is the function for playing the game
-function playGame(){
+function playGame() {
     // Here is the game ruleset algorithm
     if (playerChoice == computerChoice) {
         // We have a tie!
         updateScore(1);
+        updateScore2(1);
         displayGameResult("tie")
     } else if (playerChoice == 0 && computerChoice == 2) {
         // Rock beats scissors - a win!
         updateScore(0);
+        updateScore2(2);
         displayGameResult("win")
     } else if (playerChoice == 0 && computerChoice == 3) {
         // Rock beats scissors - a win!
         updateScore(0);
+        updateScore2(2);
         displayGameResult("win")
-     } else if (playerChoice == 1 && computerChoice == 0) {
+    } else if (playerChoice == 1 && computerChoice == 0) {
         // Paper beats scissors - a win!
         updateScore(0);
+        updateScore2(2);
         displayGameResult("win")
     } else if (playerChoice == 1 && computerChoice == 4) {
         // Paper beats scissors - a win!
         updateScore(0);
+        updateScore2(2);
         displayGameResult("win")
     } else if (playerChoice == 2 && computerChoice == 1) {
         // Scissors beats paper - a win!
         updateScore(0);
+        updateScore2(2);
         displayGameResult("win")
     } else if (playerChoice == 2 && computerChoice == 3) {
         // Scissors beats paper - a win!
         updateScore(0);
+        updateScore2(2);
         displayGameResult("win")
     } else if (playerChoice == 3 && computerChoice == 1) {
         // Scissors beats paper - a win!
         updateScore(0);
+        updateScore2(2);
         displayGameResult("win")
     } else if (playerChoice == 3 && computerChoice == 4) {
         // Scissors beats paper - a win!
         updateScore(0);
+        updateScore2(2);
         displayGameResult("win")
     } else if (playerChoice == 4 && computerChoice == 2) {
         // Scissors beats paper - a win!
         updateScore(0);
+        updateScore2(2);
         displayGameResult("win")
     } else if (playerChoice == 4 && computerChoice == 0) {
         // Scissors beats paper - a win!
         updateScore(0);
+        updateScore2(2);
         displayGameResult("win")
     } else {
         // All other combinations are losses
         updateScore(2);
+        updateScore2(0);
         displayGameResult("lose")
     }
 }
 
 //Displays the result of the game
-function displayGameResult(result){
+function displayGameResult(result) {
     // Define an array of text labels for the choices 0, 1, 2;
     // Create a message for the player
     var message = "Your choice was " + choices[playerChoice] + " and the computer's choice was " + choices[computerChoice] + ".";
@@ -98,19 +111,29 @@ function displayGameResult(result){
     }
 
     updateScoreBoard();
+
 }
 
 // Updates the score
-function updateScore(val){
+function updateScore(val) {
     ++score[val];
     console.log("The score is now " + score);
 }
 
+// Updates the AI score
+function updateScore2(val) {
+    ++score2[val];
+    console.log("The score is now " + score2);
+}
+
 // Function for displaying the score
-function updateScoreBoard(){
+function updateScoreBoard() {
     document.getElementById("wins").textContent = score[0];
+    document.getElementById("wins2").textContent = score2[0];
     document.getElementById("losses").textContent = score[2];
+     document.getElementById("losses2").textContent = score2[2];
     document.getElementById("ties").textContent = score[1];
+    document.getElementById("ties2").textContent = score2[1];
 }
 
 // The button elements
@@ -122,9 +145,21 @@ var spockButton = document.getElementById("spock");
 var playButton = document.getElementById("play");
 
 // Add the event handlers
-rockButton.addEventListener('click', () => {storePlayerChoice(0)});
-paperButton.addEventListener('click', () => {storePlayerChoice(1)});
-scissorsButton.addEventListener('click', () => {storePlayerChoice(2)});
-lizardButton.addEventListener('click', () => {storePlayerChoice(3)});
-spockButton.addEventListener('click', () => {storePlayerChoice(4)});
-playButton.addEventListener('click', () => {playGame()});
+rockButton.addEventListener('click', () => {
+    storePlayerChoice(0)
+});
+paperButton.addEventListener('click', () => {
+    storePlayerChoice(1)
+});
+scissorsButton.addEventListener('click', () => {
+    storePlayerChoice(2)
+});
+lizardButton.addEventListener('click', () => {
+    storePlayerChoice(3)
+});
+spockButton.addEventListener('click', () => {
+    storePlayerChoice(4)
+});
+playButton.addEventListener('click', () => {
+    playGame()
+});
